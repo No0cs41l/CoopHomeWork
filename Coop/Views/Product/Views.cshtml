@@ -1,0 +1,48 @@
+﻿@model IEnumerable<Coop.Models.AssortimentProduct> 
+
+@{
+    ViewData["Title"] = "Views";
+}
+
+<h1>View</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Product.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Product.EANCode)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Product.AssortimentProducts)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Product.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Product.EANCode)
+            </td>
+            <td>
+                @*@Html.DisplayFor(modelItem => item.Assortments.Select(x => x.Name).FirstOrDefault())*@
+                @Html.DisplayFor(modelItem => item.Assortment.Name)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Product.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Product.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Product.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
